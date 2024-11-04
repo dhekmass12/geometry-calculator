@@ -40,13 +40,7 @@
       console.log(pair[0] + ": " + pair[1]);
     }
 
-    let value = ""
-
-    await fetch("https://dog.ceo/api/breeds/image/random")
-      .then((response) => response.json())
-      .then((json) =>{
-        value = Object.getOwnPropertyDescriptor(json, "message").value
-      });
+    let value = 25
 
     document.getElementById("luas1").value = value;
   });
@@ -60,13 +54,7 @@
       console.log(pair[0] + ": " + pair[1]);
     }
 
-    let value = ""
-
-    await fetch("https://dog.ceo/api/breeds/image/random")
-      .then((response) => response.json())
-      .then((json) =>{
-        value = Object.getOwnPropertyDescriptor(json, "message").value
-      });
+    let value = 600
 
     document.getElementById("luas2").value = value;
   });
