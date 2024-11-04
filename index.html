@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <h1>Kalkulator Geometri</h1>
+    <form id="my-form">      
+      <fieldset>
+        <legend>Luas Persegi</legend>
+        <label for="name">Panjang sisi: </label>
+        <input type="text" id="name">
+        <label for="name">Luas: </label>
+        <input type="text" id="luas1" disabled>
+      </fieldset>
+      <button type="submit">Calculate</button>
+    </form>
+    
+    <form id="my-form2">
+      <fieldset>
+        <legend>Luas Permukaan Kubus</legend>
+        <label for="name2">Panjang rusuk: </label>
+        <input type="text" id="name2">
+        <label for="name">Luas: </label>
+        <input type="text" id="luas2" disabled>
+      </fieldset>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </body>
+</html>
+
+<script>
+  document.getElementById("my-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    var formData = new FormData(e.target);
+
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+
+    let value = ""
+
+    await fetch("https://dog.ceo/api/breeds/image/random")
+      .then((response) => response.json())
+      .then((json) =>{
+        value = Object.getOwnPropertyDescriptor(json, "message").value
+      });
+
+    document.getElementById("luas1").value = value;
+  });
+
+  document.getElementById("my-form2").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    var formData = new FormData(e.target);
+
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+
+    let value = ""
+
+    await fetch("https://dog.ceo/api/breeds/image/random")
+      .then((response) => response.json())
+      .then((json) =>{
+        value = Object.getOwnPropertyDescriptor(json, "message").value
+      });
+
+    document.getElementById("luas2").value = value;
+  });
+</script>
