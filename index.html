@@ -9,7 +9,7 @@
       <fieldset>
         <legend>Luas Persegi</legend>
         <label for="name">Panjang sisi: </label>
-        <input type="text" id="name">
+        <input type="text" id="name" name="name">
         <button type="submit">Hitung</button>
       </fieldset>
       <label for="name">Luas: </label>
@@ -20,7 +20,7 @@
       <fieldset>
         <legend>Luas Permukaan Kubus</legend>
         <label for="name2">Panjang rusuk: </label>
-        <input type="text" id="name2">
+        <input type="text" id="name2" name="name2">
         <button type="submit">Hitung</button>
       </fieldset>
 
@@ -34,13 +34,17 @@
   document.getElementById("my-form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    var formData = new FormData(e.target);
+    let formData = new FormData(e.target);
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
+    let sisi = formData.get("name")
 
-    let value = 25
+    let value = ""
+
+    await fetch(`http://35.172.183.12:8080/function/luas-persegi?sisi=${sisi}`)
+      .then((response) => response.json())
+      .then((json) =>{
+        value = Object.getOwnPropertyDescriptor(json, "luas").value
+    });
 
     document.getElementById("luas1").value = value;
   });
@@ -48,13 +52,17 @@
   document.getElementById("my-form2").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    var formData = new FormData(e.target);
+    let formData = new FormData(e.target);
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
+    let rusuk = formData.get("name2")
 
-    let value = 600
+    let value = ""
+
+    await fetch(`http://98.81.211.141:8080/function/luas-permukaan-kubus?rusuk=${rusuk}`)
+      .then((response) => response.json())
+      .then((json) =>{
+        value = Object.getOwnPropertyDescriptor(json, "luas").value
+    });
 
     document.getElementById("luas2").value = value;
   });
